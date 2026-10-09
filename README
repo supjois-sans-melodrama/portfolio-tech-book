@@ -1,0 +1,1 @@
+printf "# Portfolio Tech Book\n\nA Q&A-style tech book for my portfolio apps. Served with nginx in Docker and deployed on Fly.io.\n\nRun locally:\n\n    docker build -t portfolio-tech-book .\n    docker run -d -p 8080:80 portfolio-tech-book\n" > README.md

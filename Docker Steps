@@ -1,0 +1,52 @@
+1. Install Docker Desktop
+2. Check it works
+docker --version
+docker run hello-world
+3. Put files in one folder : Dockerfile, nginx.conf and techbook.html
+4. Build the image
+cd portfolio-book
+docker build -t portfolio-tech-book .
+5. supriyajois@Supriyas-Laptop-170 portfolio-tech-book % docker build -t portfolio-tech-book .       
+6. supriyajois@Supriyas-Laptop-170 portfolio-tech-book % docker run -d -p 8080:80 portfolio-tech-book
+7. Check what is running (it has a random name charming_lewin here)
+supriyajois@Supriyas-Laptop-170 portfolio-tech-book % docker ps
+CONTAINER ID   IMAGE                 COMMAND                  CREATED         STATUS         PORTS                                     NAMES
+eaa3f510b9b0   portfolio-tech-book   "/docker-entrypoint.…"   6 minutes ago   Up 6 minutes   0.0.0.0:8080->80/tcp, [::]:8080->80/tcp   charming_lewin
+
+8. Stop it
+supriyajois@Supriyas-Laptop-170 portfolio-tech-book % docker stop charming_lewin
+charming_lewin
+
+9
+supriyajois@Supriyas-Laptop-170 portfolio-tech-book % docker rm charming_lewin
+charming_lewin
+supriyajois@Supriyas-Laptop-170 portfolio-tech-book % 
+
+
+### DEPLPY LOG
+
+supriyajois@Supriyas-Laptop-170 portfolio-tech-book % fly launch --no-deploy
+
+We're about to launch your app on Fly.io. Here's what you're getting:
+
+Organization: Cody G                 (fly launch defaults to the personal org)
+Name:         portfolio-tech-book    (derived from your directory name)
+Region:       Singapore, Singapore   (this is the fastest region for you)
+App Machines: shared-cpu-1x, 1GB RAM (most apps need about 1GB of RAM)
+Postgres:     <none>                 (not requested)
+Redis:        <none>                 (not requested)
+Tigris:       <none>                 (not requested)
+
+════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════
+
+
+
+? Do you want to tweak these settings before proceeding? Yes
+
+Opening https://fly.io/cli/launch/76697a637a646b376373756c626671686b713770646d686c37676d36767a6333 ...
+
+Waiting for launch data... Done
+Created app 'tech-q-and-a-book' in organization 'cody-g-342'
+
+Admin URL: https://fly.io/apps/tech-q-and-a-book
+Hostname: tech-q-and-a-book.fly.dev
