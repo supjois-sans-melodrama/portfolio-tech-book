@@ -175,7 +175,39 @@ background:radial-gradient(60% 50% at 20% 8%,rgba(47,111,237,.08),transparent 70
 .by .bd small,.cover .by .bd small{font-size:.5rem;letter-spacing:.05em;white-space:nowrap;opacity:1;color:#e9d9ab;font-weight:700}
 
 .cover .rt{font-style:normal}
-</style></head><body>
+
+.cover .nm{font-size:clamp(1.05rem,1.6vw,1.35rem);font-weight:600;letter-spacing:.12em;color:#2a2958;margin:0 0 12px;padding-bottom:8px;position:relative;text-align:center}
+.cover .nm:after{content:"";position:absolute;left:50%;bottom:0;width:56px;height:1px;margin-left:-28px;background:#c9a45c}
+
+/* Nunito everywhere (diagram text excluded) */
+*:not(svg):not(svg *){font-family:"Nunito","Segoe UI",system-ui,-apple-system,sans-serif!important}
+body{-webkit-font-smoothing:antialiased}
+.cover .big{font-weight:800;letter-spacing:-.01em}
+.cover .nm{font-weight:800;font-size:clamp(1.25rem,2.2vw,1.7rem);letter-spacing:.03em;color:#1d1d22;margin:2px 0 14px;padding-bottom:10px}
+.cover .nm:after{width:64px;margin-left:-32px;height:2px;background:linear-gradient(90deg,transparent,#c9a45c,transparent)}
+/* version tag */
+.cover .by{border:0!important;outline:0!important;background:none!important;box-shadow:none!important;overflow:visible;border-radius:0}
+.vt{display:inline-block;padding:5px 14px;border-radius:999px;background:linear-gradient(135deg,#2a2958,#3b3a6b);color:#f1e3b8;font-size:.72rem;font-weight:700;letter-spacing:.08em;border:1px solid rgba(201,164,92,.8);box-shadow:0 6px 14px rgba(42,41,88,.28),inset 0 1px 0 rgba(255,255,255,.15);white-space:nowrap}
+
+/* trendy name */
+.cover .nm{text-transform:uppercase;font-weight:800;font-size:clamp(1.05rem,2vw,1.5rem);letter-spacing:.28em;text-indent:.28em;color:transparent;-webkit-text-fill-color:transparent;background:linear-gradient(100deg,#2f56d6 0%,#0f9d8a 35%,#d9480f 65%,#2f56d6 100%);background-size:220% 100%;-webkit-background-clip:text;background-clip:text;animation:nmshine 9s linear infinite;margin:4px 0 16px;padding-bottom:12px}
+.cover .nm:after{width:84px;height:3px;margin-left:-42px;border-radius:3px;background:linear-gradient(90deg,#2f56d6,#0f9d8a,#d9480f);-webkit-text-fill-color:initial}
+@keyframes nmshine{to{background-position:-220% 0}}
+@media(prefers-reduced-motion:reduce){.cover .nm{animation:none}}
+
+/* calmer link button */
+.plk,.endp .plk,.cover .plk,.APP .plk{background:linear-gradient(135deg,#2f2e5f,#3b3a6b)!important;background-size:100% 100%!important;border:1px solid rgba(201,164,92,.7);color:#fffaf0;box-shadow:0 4px 12px rgba(42,41,88,.18)!important;padding:8px 16px 8px 10px;gap:10px}
+.plk:after{display:none!important}
+.plk:hover,.endp .plk:hover{transform:translateY(-1px);filter:brightness(1.1);box-shadow:0 6px 14px rgba(42,41,88,.25)!important}
+.plg{background:rgba(201,164,92,.2);color:#e9d9ab;animation:none!important;width:30px;height:30px;font-size:.9rem}
+.plt small{color:#e9d9ab;opacity:.9;letter-spacing:.14em}.plt b{font-size:.84rem;font-weight:700;color:#fffaf0}.pla{color:#e9d9ab;font-size:1rem}
+
+/* shine back, brighter label */
+.plk:after{display:block!important;background:linear-gradient(100deg,transparent,rgba(255,255,255,.42),transparent)!important;animation:shn 3.6s ease-in-out infinite}
+.plt small{color:#ffe9a8!important;opacity:1!important;font-size:.64rem!important;font-weight:800;letter-spacing:.16em;text-shadow:0 0 8px rgba(255,233,168,.35)}
+@media(prefers-reduced-motion:reduce){.plk:after{animation:none!important}}
+</style><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,500;0,600;0,700;0,800;1,500&display=swap" rel="stylesheet">
+</head><body>
 <div class="top"><div class="ttl">&#128216; Portfolio Book <span class="v1">V1</span><span class="byl">by Supriya Jois</span></div>
 <div class="ctl">
 <select id="fl" aria-label="Page type"><option value="All">All pages</option><option value="L7">Overview</option><option value="L8">Technical</option><option value="Q7">Intermediate questions</option><option value="Q8">Advanced questions</option><option value="A">Architecture diagrams</option></select>
@@ -280,7 +312,7 @@ function parts(p){
 function draw(dir){
  var p=pages[idx],b=$("book"),s=el("div","spread");s.style.setProperty("--dx",(dir>0?28:-28)+"px");b.classList.toggle("closed",p.t==="cover"||p.t==="end");b.classList.toggle("back",p.t==="end");
  if(p.t==="cover"||p.t==="end"){s.className="spread solo";var g=el("div","page "+(p.t==="cover"?"cover":"endp"),null,s);
-  if(p.t==="cover"){el("div","chap","Analytics and prototypes",g);el("div","big","Portfolio Tech Book",g).innerHTML='Portfolio Tech Book <span class="v1">V1</span>';el("i","rib",null,g);var hd=el("div","hd",null,g);portLink(hd);var bh='<span class="bw"><small>DESIGNED &amp; BUILT BY</small><b>Supriya Jois</b></span><span class="bd"><small>V1 - Oct 2026</small></span>';el("div","by",null,g).innerHTML=bh;el("div","by by2",null,g).innerHTML=bh;el("div","rt","What each app does, how it works, and how it scales",g);el("div","rt",(pages.length-3)+" pages · 8 apps",g);artGrid(g);var o=el("button","on","Open the book \u203A",g);o.style.marginTop="14px";o.onclick=function(){stopSpeech();goTo(1,1)}}
+  if(p.t==="cover"){el("div","chap","Analytics and prototypes",g);el("div","big","Portfolio Tech Book",g).innerHTML='Portfolio Tech Book <span class="v1">V1</span>';el("div","nm","Supriya Jois",g);el("i","rib",null,g);var hd=el("div","hd",null,g);portLink(hd);var bh='<span class="vt">V1 - Oct 2026</span>';el("div","by",null,g).innerHTML=bh;el("div","by by2",null,g).innerHTML=bh;el("div","rt","What each app does, how it works, and how it scales",g);el("div","rt",(pages.length-3)+" pages · 8 apps",g);artGrid(g);var o=el("button","on","Open the book \u203A",g);o.style.marginTop="14px";o.onclick=function(){stopSpeech();goTo(1,1)}}
   else{el("i","rib",null,g);el("div","chap","Thank you for reading",g);el("div","big","The End",g);el("div","rt","Pick an app to open its page, or start the book again.",g);artGrid(g,1);portLink(g);var bs=el("div","btns",null,g);var r=el("button","on","Back to cover",g);bs.appendChild(r);r.onclick=function(){stopSpeech();goTo(0,-1)};var c2=el("button","","Contents",bs);c2.onclick=function(){stopSpeech();goTo(1,-1)};el("div","by",null,g).innerHTML='<span class="bw"><small>DESIGNED &amp; BUILT BY</small><b>Supriya Jois</b><small class="vv">PORTFOLIO TECH BOOK</small></span><span class="bd"><small>V1 - Oct 2026</small></span>'}}
  else if(p.t==="app"){appPage(s,p)}
  else if(p.t==="toc"){var l=el("div","page left",null,s);el("div","chap","Contents",l);el("h2","big","Apps",l).style.fontSize="1.8rem";var t=el("div","toc",null,l);
@@ -305,14 +337,35 @@ function speakPage(){
  var ps=parts(pages[idx]);
  if(!ps.length){if(auto&&idx<pages.length-1){goTo(idx+1,1);speakPage()}else stopSpeech();return}
  var t=++tok;SS.cancel();speaking=true;mark();var vo=VOICES[$("vo").selectedIndex];
- ps.forEach(function(x,i){var u=new SpeechSynthesisUtterance(x);u.rate=rate;u.lang="en-US";if(vo)u.voice=vo;
-  if(i===ps.length-1)u.onend=function(){if(t!==tok)return;if(auto&&idx<pages.length-1){goTo(idx+1,1);speakPage()}else{speaking=false;auto=false;mark()}};
+ var all=[];ps.forEach(function(x){chunks(x).forEach(function(c){all.push(c)})});var lang=vo?vo.lang:"en-US";
+ all.forEach(function(x,i){var u=new SpeechSynthesisUtterance(x);u.rate=rate;u.pitch=1;u.volume=1;u.lang=lang;if(vo)u.voice=vo;
+  if(i===all.length-1)u.onend=function(){if(t!==tok)return;if(auto&&idx<pages.length-1){goTo(idx+1,1);speakPage()}else{speaking=false;auto=false;mark()}};
   SS.speak(u)})}
-function loadVoices(){if(!SS)return;var bad=/Albert|Bad News|Bahh|Bells|Boing|Bubbles|Cellos|Good News|Jester|Organ|Superstar|Trinoids|Whisper|Wobble|Zarvox|Fred|Junior|Ralph|Kathy|Eddy|Flo\b|Grandma|Grandpa|Reed|Rocko|Sandy|Shelley|Compact|Novelty/i,good=/Natural|Neural|Online|Enhanced|Premium|Google|Samantha|Daniel|Karen|Moira|Tessa|Rishi|Serena|Ava|Allison|Aria|Jenny|Libby|Sonia|Neerja|Guy|Ryan/i,pref=["en-US","en-GB","en-IN","en-AU"];var en=SS.getVoices().filter(function(v){return /^en/i.test(v.lang)});VOICES=en.filter(function(v){return !bad.test(v.name)});if(!VOICES.length)VOICES=en;function rk(v){var l=pref.indexOf(v.lang.replace("_","-"));return(good.test(v.name)?0:20)+(l<0?9:l)}VOICES.sort(function(a,b){return rk(a)-rk(b)});VOICES=VOICES.slice(0,8);var sel=$("vo");sel.innerHTML="";if(!VOICES.length){sel.style.display="none";return}sel.style.display="";VOICES.forEach(function(v){el("option","",v.name.replace(/Microsoft |Google /,""),sel)})}
+var PRON=[[/\bLLMs?\b/g,"L L M"],[/\bAPIs?\b/g,"A P I"],[/\bRAG\b/g,"R A G"],[/\bUI\b/g,"U I"],[/\bPCA\b/g,"P C A"],[/\bMAE\b/g,"M A E"],[/\bMAPE\b/g,"M A P E"],[/\bANN\b/g,"A N N"],[/\bCDN\b/g,"C D N"],[/\bLWW\b/g,"last write wins"],[/\bHLC\b/g,"hybrid logical clock"],[/\bJSON\b/g,"Jason"],[/\bSQL\b/g,"sequel"],[/\bFX\b/g,"F X"],[/\bGPT\b/g,"G P T"],[/\bTTL\b/g,"T T L"],[/\bCSV\b/g,"C S V"],[/\bURL\b/g,"U R L"],[/R\u00b2/g,"R squared"],[/&/g," and "],[/[\u2192\u203a\u00bb]/g," to "],[/[\u00b7\u2022]/g,", "],[/\bvs\.?(?=\s)/gi,"versus"],[/\bK-means\b/g,"K means"],[/\bV1\b/g,"version one"]];
+function norm(t){PRON.forEach(function(r){t=t.replace(r[0],r[1])});return t.replace(/[\u2600-\u27BF\u{1F300}-\u{1FAFF}]/gu,"").replace(/\s+/g," ").trim()}
+function chunks(t){var a=norm(t).match(/[\s\S]+?(?:[.!?;:]+(?=\s|$)|$)/g)||[t],o=[],c="";a.forEach(function(x){if(c&&(c+x).length>180){o.push(c);c=x}else c+=x});if(c)o.push(c);return o.map(function(x){return x.trim()}).filter(Boolean)}
+var PERSONA=[];
+function loadVoices(){if(!SS)return;
+ var bad=/Albert|Bad News|Bahh|Bells|Boing|Bubbles|Cellos|Good News|Jester|Organ|Superstar|Trinoids|Whisper|Wobble|Zarvox|Fred|Junior|Ralph|Kathy|Eddy|Flo\b|Grandma|Grandpa|Reed|Rocko|Sandy|Shelley|Compact|Novelty/i,
+ nat=/Natural|Neural|Online|Premium|Enhanced|Siri/i,
+ good=/Samantha|Daniel|Karen|Moira|Tessa|Rishi|Serena|Ava|Allison|Aria|Jenny|Libby|Sonia|Neerja|Guy|Ryan|Alex|Oliver|Arthur|Susan|Zira|Hazel|George|Catherine|James|Linda|Heera|Ravi|Veena/i,
+ fem=/Female|Samantha|Karen|Moira|Tessa|Serena|Ava|Allison|Aria|Jenny|Libby|Sonia|Neerja|Susan|Zira|Hazel|Catherine|Linda|Heera|Veena|Kate|Fiona|Victoria|Nicky|Emma|Amy|Joanna|Salli/i,
+ mal=/\bMale\b|Daniel|Rishi|Guy|Ryan|Alex|Oliver|Arthur|George|James|Ravi|Tom|Lee|Aaron|Evan|Gordon|Nathan|Mark|David|Brian|Matthew|Joey/i,
+ pref=["en-US","en-GB","en-IN","en-AU"],seen={};
+ var en=SS.getVoices().filter(function(v){return /^en/i.test(v.lang)&&!seen[v.name]&&(seen[v.name]=1)});
+ VOICES=en.filter(function(v){return !bad.test(v.name)});if(!VOICES.length)VOICES=en;
+ function tier(v){return nat.test(v.name)?0:good.test(v.name)?1:/Google/.test(v.name)?3:2}
+ function rk(v){var l=pref.indexOf(v.lang.replace("_","-"));return tier(v)*20+(v.localService?0:4)+(l<0?9:l)}
+ VOICES.sort(function(a,b){return rk(a)-rk(b)});VOICES=VOICES.slice(0,10);
+ var P={"US-F":["Maya","Nora","Sophie","Grace"],"US-M":["Leo","Ethan","Jack","Miles"],"GB-F":["Ada","Eleanor","Emma","Clara"],"GB-M":["Arthur","Oliver","Henry","Felix"],"IN-F":["Priya","Meera","Anika","Isha"],"IN-M":["Arjun","Rohan","Vikram","Kabir"],"AU-F":["Matilda","Chloe","Zoe"],"AU-M":["Oscar","Hugo","Rory"],"X-F":["Aria","Luna","Iris"],"X-M":["Theo","Kai","Rex"],"N":["Sam","Riley","Jordan","Casey","Quinn"]},used={},AC={US:"US",GB:"UK",IN:"India",AU:"Australia",X:"English"};
+ var sel=$("vo");sel.innerHTML="";PERSONA=[];if(!VOICES.length){sel.style.display="none";return}sel.style.display="";
+ VOICES.forEach(function(v){var m=/en[-_](US|GB|IN|AU)/i.exec(v.lang),ac=m?m[1].toUpperCase():"X",g=fem.test(v.name)?"F":mal.test(v.name)?"M":"N",k=g==="N"?"N":ac+"-"+g,pool=P[k]||P.N,i=used[k]||0;used[k]=i+1;var nm=pool[i%pool.length]+(i>=pool.length?" "+(Math.floor(i/pool.length)+1):"");PERSONA.push(nm);el("option","",(tier(v)===0?"\u2605 ":"")+nm+" \u00b7 "+AC[ac],sel)})}
+
 if(SS){loadVoices();SS.onvoiceschanged=loadVoices}
 $("ls").onclick=function(){if(speaking){stopSpeech()}else{auto=false;speakPage()}};
 $("au").onclick=function(){if(speaking&&auto){stopSpeech()}else{stopSpeech();auto=true;speakPage()}};
 $("sp").onchange=function(){rate=parseFloat(this.value)};
+$("vo").onchange=function(){stopSpeech();var v=VOICES[this.selectedIndex];if(!SS||!v)return;setTimeout(function(){var u=new SpeechSynthesisUtterance("Hi, I am "+PERSONA[$("vo").selectedIndex]+". Ready when you are.");u.voice=v;u.lang=v.lang;u.rate=rate;SS.speak(u)},80)};
 function step(d){stopSpeech();goTo(idx+d,d)}
 $("gs").onclick=function(){stopSpeech();goTo(0,-1)};$("ge").onclick=function(){stopSpeech();goTo(pages.length-1,1)};$("pv").onclick=function(){step(-1)};$("nx").onclick=function(){step(1)};
 $("fl").onchange=function(){lv=this.value;stopSpeech();build();draw(1)};
