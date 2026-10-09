@@ -152,8 +152,31 @@ background:radial-gradient(60% 50% at 20% 8%,rgba(47,111,237,.08),transparent 70
 @media(min-width:1000px) and (min-height:900px){.cover .by,.cover .by2{transform:none;zoom:.88}}
 
 .cover .tl{display:flex;align-items:center;justify-content:center;text-align:center;line-height:1.15;min-height:2.3em}
+
+/* credit always visible */
+.byl{font-size:.78rem;font-weight:500;color:var(--mut);margin-left:8px;white-space:nowrap}
+.cover .by2{display:none!important}
+.cover .by{order:-1;position:static!important;transform:none!important;zoom:1!important;margin:0 0 10px!important;flex-wrap:wrap;justify-content:center}
+.cover .by .bw{flex-direction:row;flex-wrap:wrap;justify-content:center;align-items:center;gap:2px 8px;padding:5px 14px}
+.cover .by .bw b{font-size:1.02rem}.cover .by small{font-size:.5rem}
+.cover .by .bd{flex-direction:row;gap:6px;padding:4px 12px}.cover .by .bd em{font-size:.9rem}
+@media(max-width:560px){.cover .by{flex-direction:column;align-items:stretch}.cover .by .bd{border-left:0;border-top:1px solid rgba(201,164,92,.85);justify-content:center}}
+
+/* small screens: never clip the top of the cover */
+@media(max-width:720px){.solo{align-content:start!important}.cover,.endp{overflow:visible!important}.cover .by{margin:2px 0 10px!important}.byl{display:block;margin:2px 0 0}}
+
+/* credit: bottom-right corner, pinned on every screen */
+.cover .by{order:99;align-self:flex-end;margin:auto 0 0 auto!important;position:sticky!important;bottom:16px;z-index:5;flex-wrap:nowrap;box-shadow:0 8px 20px rgba(70,50,15,.22),inset 0 1px 0 #fff}
+@media(max-width:720px){.cover .by{margin:auto 0 0 auto!important}}
+@media(max-width:560px){.cover .by{flex-direction:row;flex-wrap:nowrap}.cover .by .bw{flex-direction:column;align-items:flex-start;flex-wrap:nowrap;gap:1px;padding:5px 12px}.cover .by .bd{flex-direction:column;gap:0;border-left:1px solid rgba(201,164,92,.85);border-top:0;padding:4px 10px}.cover .by .bw b{font-size:.98rem}}
+
+/* tiny version/date tag */
+.by .bd,.cover .by .bd,.endp .by .bd{flex-direction:row!important;justify-content:center;padding:3px 8px!important;gap:0}
+.by .bd small,.cover .by .bd small{font-size:.5rem;letter-spacing:.05em;white-space:nowrap;opacity:1;color:#e9d9ab;font-weight:700}
+
+.cover .rt{font-style:normal}
 </style></head><body>
-<div class="top"><div class="ttl">&#128216; Portfolio Book <span class="v1">V1</span></div>
+<div class="top"><div class="ttl">&#128216; Portfolio Book <span class="v1">V1</span><span class="byl">by Supriya Jois</span></div>
 <div class="ctl">
 <select id="fl" aria-label="Page type"><option value="All">All pages</option><option value="L7">Overview</option><option value="L8">Technical</option><option value="Q7">Intermediate questions</option><option value="Q8">Advanced questions</option><option value="A">Architecture diagrams</option></select>
 <select id="fc" aria-label="App"><option value="All">All apps</option><option value="1">1 Weather Agent</option><option value="2">2 Song Reco Pilot</option><option value="3">3 Commodities</option><option value="4">4 Board Games</option><option value="5">5 Ideas Bucket</option><option value="6">6 Transit Router</option><option value="7">7 DIY Helper</option><option value="8">8 Creator Dashboard</option></select>
@@ -257,8 +280,8 @@ function parts(p){
 function draw(dir){
  var p=pages[idx],b=$("book"),s=el("div","spread");s.style.setProperty("--dx",(dir>0?28:-28)+"px");b.classList.toggle("closed",p.t==="cover"||p.t==="end");b.classList.toggle("back",p.t==="end");
  if(p.t==="cover"||p.t==="end"){s.className="spread solo";var g=el("div","page "+(p.t==="cover"?"cover":"endp"),null,s);
-  if(p.t==="cover"){el("div","chap","Analytics and prototypes",g);el("div","big","Portfolio Tech Book",g).innerHTML='Portfolio Tech Book <span class="v1">V1</span>';el("i","rib",null,g);var hd=el("div","hd",null,g);portLink(hd);var bh='<span class="bw"><small>DESIGNED &amp; BUILT BY</small><b>Supriya Jois</b></span><span class="bd">\u2726<small>OCTOBER</small><em>2026</em></span>';el("div","by",null,g).innerHTML=bh;el("div","by by2",null,g).innerHTML=bh;el("div","rt","What each app does, how it works, and how it scales",g);el("div","rt",(pages.length-3)+" pages · 8 apps",g);artGrid(g);var o=el("button","on","Open the book \u203A",g);o.style.marginTop="14px";o.onclick=function(){stopSpeech();goTo(1,1)}}
-  else{el("i","rib",null,g);el("div","chap","Thank you for reading",g);el("div","big","The End",g);el("div","rt","Pick an app to open its page, or start the book again.",g);artGrid(g,1);portLink(g);var bs=el("div","btns",null,g);var r=el("button","on","Back to cover",g);bs.appendChild(r);r.onclick=function(){stopSpeech();goTo(0,-1)};var c2=el("button","","Contents",bs);c2.onclick=function(){stopSpeech();goTo(1,-1)};el("div","by",null,g).innerHTML='<span class="bw"><small>DESIGNED &amp; BUILT BY</small><b>Supriya Jois</b><small class="vv">PORTFOLIO TECH BOOK \u00b7 V1</small></span><span class="bd">\u2726<small>OCTOBER</small><em>2026</em></span>'}}
+  if(p.t==="cover"){el("div","chap","Analytics and prototypes",g);el("div","big","Portfolio Tech Book",g).innerHTML='Portfolio Tech Book <span class="v1">V1</span>';el("i","rib",null,g);var hd=el("div","hd",null,g);portLink(hd);var bh='<span class="bw"><small>DESIGNED &amp; BUILT BY</small><b>Supriya Jois</b></span><span class="bd"><small>V1 - Oct 2026</small></span>';el("div","by",null,g).innerHTML=bh;el("div","by by2",null,g).innerHTML=bh;el("div","rt","What each app does, how it works, and how it scales",g);el("div","rt",(pages.length-3)+" pages · 8 apps",g);artGrid(g);var o=el("button","on","Open the book \u203A",g);o.style.marginTop="14px";o.onclick=function(){stopSpeech();goTo(1,1)}}
+  else{el("i","rib",null,g);el("div","chap","Thank you for reading",g);el("div","big","The End",g);el("div","rt","Pick an app to open its page, or start the book again.",g);artGrid(g,1);portLink(g);var bs=el("div","btns",null,g);var r=el("button","on","Back to cover",g);bs.appendChild(r);r.onclick=function(){stopSpeech();goTo(0,-1)};var c2=el("button","","Contents",bs);c2.onclick=function(){stopSpeech();goTo(1,-1)};el("div","by",null,g).innerHTML='<span class="bw"><small>DESIGNED &amp; BUILT BY</small><b>Supriya Jois</b><small class="vv">PORTFOLIO TECH BOOK</small></span><span class="bd"><small>V1 - Oct 2026</small></span>'}}
  else if(p.t==="app"){appPage(s,p)}
  else if(p.t==="toc"){var l=el("div","page left",null,s);el("div","chap","Contents",l);el("h2","big","Apps",l).style.fontSize="1.8rem";var t=el("div","toc",null,l);
   CH.forEach(function(c){var n=0,first=-1;pages.forEach(function(q,k){if((q.t==="q"||q.t==="app")&&q.c===c){if(q.t==="q")n++;if(first<0)first=k}});var bt=el("button","",null,t);el("span","","App "+c.n+" · "+c.t,bt);el("span","",n+" Q",bt);bt.disabled=!n;bt.onclick=function(){stopSpeech();goTo(first,1)}});
